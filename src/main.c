@@ -132,6 +132,14 @@ static void check_start_application(void) {
         *DBL_TAP_PTR = 0;
     }
 
+    for (uint16_t i = 0;i<5000;i++) {
+        if (usart_sharp_received()) {
+            return;
+        }
+        delay(1);
+    }
+
+
     LED_MSC_OFF();
 
 #if defined(BOARD_RGBLED_CLOCK_PIN)
@@ -241,6 +249,8 @@ int main(void) {
 #endif
     led_init();
 
+    RGBLED_set_color(COLOR_GO);
+
     logmsg("Start");
     assert((uint32_t)&_etext < APP_START_ADDRESS);
     // bossac writes at 0x20005000
@@ -249,8 +259,7 @@ int main(void) {
     assert(8 << NVMCTRL->PARAM.bit.PSZ == FLASH_PAGE_SIZE);
     assert(FLASH_PAGE_SIZE * NVMCTRL->PARAM.bit.NVMP == FLASH_SIZE);
 
-    /* Jump in application if condition is satisfied */
-    check_start_application();
+  
 
     /* We have determined we should stay in the monitor. */
     /* System initialization */
@@ -263,6 +272,9 @@ int main(void) {
     /* UART is enabled in all cases */
     usart_open();
 #endif
+
+  /* Jump in application if condition is satisfied */
+    check_start_application();
 
     logmsg("Before main loop");
 
@@ -306,7 +318,7 @@ int main(void) {
         }
 #if USE_UART
         /* Check if a '#' has been received */
-        if (!main_b_cdc_enable && usart_sharp_received()) {
+        if (!main_b_cdc_enable) {
             RGBLED_set_color(COLOR_UART);
             sam_ba_monitor_init(SAM_BA_INTERFACE_USART);
             /* SAM-BA on UART loop */
