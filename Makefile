@@ -137,6 +137,33 @@ r \n\
 qc \n\
 " > $(BUILD_PATH)/flash.jlink
 
+$(BUILD_PATH)/restore_boot.jlink: $(BUILD_PATH)/$(NAME).bin
+	echo " \n\
+r \n\
+h \n\
+loadfile \"restore_boot.mot\" \n\
+r \n\
+qc \n\
+" > $(BUILD_PATH)/restore_boot.jlink
+
+$(BUILD_PATH)/lock_boot.jlink: $(BUILD_PATH)/$(NAME).bin
+	echo " \n\
+r \n\
+h \n\
+loadfile \"lock_boot.mot\" \n\
+r \n\
+qc \n\
+" > $(BUILD_PATH)/lock_boot.jlink
+
+
+
+jlink-unlock: $(BUILD_PATH)/$(NAME).bin $(BUILD_PATH)/restore_boot.jlink
+	JLinkExe -if swd -device AT$(CHIP_VARIANT) -speed 4000 -CommanderScript $(BUILD_PATH)/restore_boot.jlink
+
+jlink-lock: $(BUILD_PATH)/$(NAME).bin $(BUILD_PATH)/lock_boot.jlink
+	JLinkExe -if swd -device AT$(CHIP_VARIANT) -speed 4000 -CommanderScript $(BUILD_PATH)/lock_boot.jlink
+
+
 jlink-flash: $(BUILD_PATH)/$(NAME).bin $(BUILD_PATH)/flash.jlink
 	JLinkExe -if swd -device AT$(CHIP_VARIANT) -speed 4000 -CommanderScript $(BUILD_PATH)/flash.jlink
 

@@ -20,9 +20,9 @@
 #define BOOT_USART_MODULE                 SERCOM0
 #define BOOT_USART_MASK                   APBAMASK
 #define BOOT_USART_BUS_CLOCK_INDEX        MCLK_APBBMASK_SERCOM0
-#define BOOT_USART_PAD_SETTINGS           UART_RX_PAD1_TX_PAD0
-#define BOOT_USART_PAD3                   PINMUX_PA10C_SERCOM0_PAD2
-#define BOOT_USART_PAD2                   PINMUX_PA11C_SERCOM0_PAD3
+#define BOOT_USART_PAD_SETTINGS           UART_RX_PAD3_TX_PAD2
+#define BOOT_USART_PAD3                   PINMUX_PA11C_SERCOM0_PAD3
+#define BOOT_USART_PAD2                   PINMUX_PA10C_SERCOM0_PAD2
 #define BOOT_USART_PAD1                   PINMUX_UNUSED
 #define BOOT_USART_PAD0                   PINMUX_UNUSED
 #define BOOT_GCLK_ID_CORE                 SERCOM0_GCLK_ID_CORE

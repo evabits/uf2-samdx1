@@ -125,7 +125,7 @@ void usart_open() {
     #endif
 
     /* Baud rate 115200 - clock 8MHz -> BAUD value-50436 */
-    uart_basic_init(BOOT_USART_MODULE, 50436, BOOT_USART_PAD_SETTINGS);
+    uart_basic_init(BOOT_USART_MODULE, 63019, BOOT_USART_PAD_SETTINGS);
 
     // Initialize flag
     b_sharp_received = false;

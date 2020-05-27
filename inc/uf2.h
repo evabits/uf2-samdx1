@@ -42,7 +42,7 @@
 #define NUM_FAT_BLOCKS 16000
 
 // Logging to help debugging
-#define USE_LOGS 1
+#define USE_LOGS 0
 // Check various conditions; best leave on
 #define USE_ASSERT 1 // 188 bytes
 // Enable reading flash via FAT files; otherwise drive will appear empty
@@ -70,7 +70,7 @@
 // will start the app. This only happens if the app says it wants that (see SINGLE_RESET() below).
 // If disabled here or by the app, the bootloader will only start with double-click of the reset
 // button.
-#define USE_SINGLE_RESET 1
+#define USE_SINGLE_RESET 0
 
 // Fine-tuning of features
 #define USE_HID_SERIAL 0   // just an example, not really needed; 36 bytes
