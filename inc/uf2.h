@@ -241,7 +241,8 @@ void padded_memcpy(char *dst, const char *src, int len);
 // of the RAM, but instead after all allocated BSS.
 // In other words, this word should survive reset.
 #ifdef SAMD21
-#define DBL_TAP_PTR ((volatile uint32_t *)(HMCRAMC0_ADDR + HMCRAMC0_SIZE - 4))
+#define DBL_TAP_PTR ((volatile uint32_t *)(HMCRAMC0_ADDR + 0x7FF0))
+// #define DBL_TAP_PTR ((volatile uint32_t *)(HMCRAMC0_ADDR + HMCRAMC0_SIZE - 4))
 #endif
 #ifdef SAMD51
 #define DBL_TAP_PTR ((volatile uint32_t *)(HSRAM_ADDR + HSRAM_SIZE - 4))

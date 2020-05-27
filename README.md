@@ -197,3 +197,8 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 See THIRD-PARTY-NOTICES.txt for the original SAM-BA bootloader license from Atmel.
 
 The new code is licensed under MIT.
+
+
+## Bossac command
+
+bossac -p /dev/ttyUSB0 --info --debug --write --reset --erase --offse=0x2000 ~/Projects/acquaint/pipescannerboard/PipescannerFirmware/.pio/build/acquaint_pipescanner_sensor_1_5mhz/firmware_acquaint_pipescanner_sensor_1_5mhz_e84cd19.bin

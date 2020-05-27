@@ -50,7 +50,8 @@ SEARCH_DIR(.)
 MEMORY
 {
   rom      (rx)  : ORIGIN = 0x00000000, LENGTH = 0x00002000
-  ram      (rwx) : ORIGIN = 0x20000000, LENGTH = 0x00008000
+  ram (rwx)   : ORIGIN = 0x20000000, LENGTH = 0x00007FF0
+  NOINIT(rwx) : ORIGIN = 0x20007FF0, LENGTH = 0x00000010
 }
 
 /* The stack size used by the application. NOTE: you need to adjust according to your application. */
@@ -111,6 +112,11 @@ SECTIONS
         _efixed = .;            /* End of text section */
     } > rom
 
+
+    	.noinit(NOLOAD) :
+	{
+		*(.noinit*)
+	} > NOINIT
     /* .ARM.exidx is sorted, so has to go in its own output section.  */
     PROVIDE_HIDDEN (__exidx_start = .);
     .ARM.exidx :
