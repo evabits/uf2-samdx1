@@ -102,6 +102,7 @@ static void check_start_application(void) {
         /* Stay in bootloader */
         return;
     }
+    return; // Force to test
 
 #if USE_SINGLE_RESET
     if (SINGLE_RESET()) {
