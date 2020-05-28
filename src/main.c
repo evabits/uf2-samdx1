@@ -132,7 +132,7 @@ static void check_start_application(void) {
         *DBL_TAP_PTR = 0;
     }
 
-    for (uint16_t i = 0;i<5000;i++) {
+    for (uint16_t i = 0;i<1000;i++) {
         if (usart_sharp_received()) {
             return;
         }
