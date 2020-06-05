@@ -102,7 +102,7 @@ static void check_start_application(void) {
         /* Stay in bootloader */
         return;
     }
-    // return; // Force to test
+     return; // Force to test
 
 #if USE_SINGLE_RESET
     if (SINGLE_RESET()) {
@@ -249,7 +249,7 @@ int main(void) {
 #endif
     led_init();
 
-    RGBLED_set_color(COLOR_GO);
+    //RGBLED_set_color(COLOR_GO);
 
     logmsg("Start");
     assert((uint32_t)&_etext < APP_START_ADDRESS);
@@ -286,8 +286,8 @@ int main(void) {
 
     /* Wait for a complete enum on usb or a '#' char on serial line */
     while (1) {
-         // usart_putc('a');
-         // delay(1000);
+          usart_putc('a');
+          delay(1000);
         if (USB_Ok()) {
             if (!main_b_cdc_enable) {
 #if USE_SINGLE_RESET

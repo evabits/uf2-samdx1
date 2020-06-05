@@ -684,7 +684,15 @@ uint32_t USB_WriteCore(const void *pData, uint32_t length, uint8_t ep_num, bool 
         /* Update the EP data address */
         data_address = (uint32_t)pData;
         // data must be in RAM!
-        assert(data_address >= HMCRAMC0_ADDR);
+        
+        #if defined(SAMD21)
+            assert(data_address >= HMCRAMC0_ADDR);
+        #elif defined(SAMD51)
+            assert(data_address >= HSRAM_ADDR);
+        #endif
+
+        
+        // assert(data_address >= HMCRAMC0_ADDR);
 
         // always disable AUTO_ZLP on MSC channel, otherwise enable
         epdesc->DeviceDescBank[1].PCKSIZE.bit.AUTO_ZLP = ep_num == USB_EP_MSC_IN ? false : true;
