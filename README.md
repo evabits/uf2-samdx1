@@ -202,3 +202,8 @@ The new code is licensed under MIT.
 ## Bossac command
 
 bossac -p /dev/ttyUSB0 --info --debug --write --reset --erase --offse=0x2000 ~/Projects/acquaint/pipescannerboard/PipescannerFirmware/.pio/build/acquaint_pipescanner_sensor_1_5mhz/firmware_acquaint_pipescanner_sensor_1_5mhz_e84cd19.bin
+
+## Some extra debug info
+
+- https://www.alkgrove.com/articles/SAMD51_SWD_article.html
+- https://hackaday.io/page/5997-programming-a-samd-bootloader-using-jlink-linux

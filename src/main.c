@@ -254,7 +254,7 @@ int main(void) {
     logmsg("Start");
     assert((uint32_t)&_etext < APP_START_ADDRESS);
     // bossac writes at 0x20005000
-    assert(!USE_MONITOR || (uint32_t)&_end < 0x20005000);
+    // assert(!USE_MONITOR || (uint32_t)&_end < 0x20005000);
 
     assert(8 << NVMCTRL->PARAM.bit.PSZ == FLASH_PAGE_SIZE);
     assert(FLASH_PAGE_SIZE * NVMCTRL->PARAM.bit.NVMP == FLASH_SIZE);
@@ -286,8 +286,6 @@ int main(void) {
 
     /* Wait for a complete enum on usb or a '#' char on serial line */
     while (1) {
-          usart_putc('a');
-          delay(1000);
         if (USB_Ok()) {
             if (!main_b_cdc_enable) {
 #if USE_SINGLE_RESET
@@ -323,7 +321,10 @@ int main(void) {
             sam_ba_monitor_init(SAM_BA_INTERFACE_USART);
             /* SAM-BA on UART loop */
             while (1) {
+                // usart_putc('a');
+                // delay(1000);
                 sam_ba_monitor_run();
+                
             }
         }
 #endif

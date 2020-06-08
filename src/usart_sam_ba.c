@@ -124,8 +124,13 @@ void usart_open() {
     MCLK->BOOT_USART_MASK.reg |= BOOT_USART_BUS_CLOCK_INDEX ;
     #endif
 
+    #ifdef SAMD21
     /* Baud rate 115200 - clock 8MHz -> BAUD value-50436 */
     uart_basic_init(BOOT_USART_MODULE, 63019, BOOT_USART_PAD_SETTINGS);
+    #else
+    uart_basic_init(BOOT_USART_MODULE, 63099, BOOT_USART_PAD_SETTINGS);
+    
+    #endif
 
     // Initialize flag
     b_sharp_received = false;
