@@ -102,7 +102,6 @@ static void check_start_application(void) {
         /* Stay in bootloader */
         return;
     }
-     return; // Force to test
 
 #if USE_SINGLE_RESET
     if (SINGLE_RESET()) {
@@ -146,6 +145,7 @@ static void check_start_application(void) {
     // This won't work for neopixel, because we're running at 1MHz or thereabouts...
     RGBLED_set_color(COLOR_LEAVE);
 #endif
+return; // Force to test
 
     /* Rebase the Stack Pointer */
     __set_MSP(*(uint32_t *)APP_START_ADDRESS);
@@ -204,7 +204,7 @@ int main(void) {
 #elif defined(SAMD51)
     // Disable the watchdog, in case the application set it.
     WDT->CTRLA.reg = 0;
-    while(WDT->SYNCBUSY.reg) {}
+    while(WDT->SYNCBUSY.reg);
 
     // Enable 2.7V brownout detection. The default fuse value is 1.7
     // Set brownout detection to ~2.7V. Default from factory is 1.7V,
@@ -254,7 +254,7 @@ int main(void) {
     logmsg("Start");
     assert((uint32_t)&_etext < APP_START_ADDRESS);
     // bossac writes at 0x20005000
-    // assert(!USE_MONITOR || (uint32_t)&_end < 0x20005000);
+    //assert(!USE_MONITOR || (uint32_t)&_end < 0x20005000);
 
     assert(8 << NVMCTRL->PARAM.bit.PSZ == FLASH_PAGE_SIZE);
     assert(FLASH_PAGE_SIZE * NVMCTRL->PARAM.bit.NVMP == FLASH_SIZE);
