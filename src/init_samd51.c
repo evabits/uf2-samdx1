@@ -73,7 +73,7 @@ void system_init(void) {
     }
 
     /* Turn on the digital interface clock */
-    //MCLK->APBAMASK.reg |= MCLK_APBAMASK_GCLK;
+    MCLK->APBAMASK.reg |= MCLK_APBAMASK_GCLK;
 
     /*
      * Now that all system clocks are configured, we can set CLKDIV .

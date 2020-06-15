@@ -7,7 +7,7 @@
         {
             "name": "Cortex Debug",
             "cwd": "${workspaceRoot}",
-            "executable": "./build/radarsensor/bootloader-radarsensor-v3.10.0-9-g9a5b5a7-dirty.elf",
+            "executable": "./build/radarsensor/bootloader-radarsensor-v3.10.0-10-g97de872-dirty.elf",
             "device": "ATSAMD51G19",
             "request": "launch",
             "svdFile": "./boards/radarsensor/ATSAMD51G19A.svd",

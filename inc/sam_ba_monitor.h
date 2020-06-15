@@ -40,7 +40,7 @@
 #define SAM_BA_INTERFACE_USBCDC 0
 
 /* Selects USB as the communication interface of the monitor */
-#define SIZEBUFMAX 64
+#define SIZEBUFMAX 256
 
 /**
  * \brief Initialize the monitor
