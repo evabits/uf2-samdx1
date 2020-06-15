@@ -145,7 +145,21 @@ static void check_start_application(void) {
     // This won't work for neopixel, because we're running at 1MHz or thereabouts...
     RGBLED_set_color(COLOR_LEAVE);
 #endif
-return; // Force to test
+//return; // Force to test
+
+    // stop all interrupts
+    __disable_irq();
+
+    // // Disable IRQs
+    // for(int i = 0;i < 8;i++)
+    // {
+    //     NVIC->ICER[i] = 0xFFFFFFFF;
+    // }
+    // // Clear pending IRQs
+    // for(int i = 0;i < 8;i++)
+    // {
+    //     NVIC->ICPR[i] = 0xFFFFFFFF;
+    // }
 
     /* Rebase the Stack Pointer */
     __set_MSP(*(uint32_t *)APP_START_ADDRESS);
@@ -169,6 +183,7 @@ int main(void) {
     if (SCB->VTOR)
         while (1) {
         }
+    SEGGER_RTT_printf(0, "Power on before init\r\n");
 
 #if defined(SAMD21)
     // If fuses have been reset to all ones, the watchdog ALWAYS-ON is
@@ -250,6 +265,7 @@ int main(void) {
     led_init();
 
     //RGBLED_set_color(COLOR_GO);
+    SEGGER_RTT_printf(0, "After init\r\n");
 
     logmsg("Start");
     assert((uint32_t)&_etext < APP_START_ADDRESS);
@@ -272,9 +288,10 @@ int main(void) {
     /* UART is enabled in all cases */
     usart_open();
 #endif
-
+    SEGGER_RTT_printf(0, "Before check start\r\n");
   /* Jump in application if condition is satisfied */
     check_start_application();
+    SEGGER_RTT_printf(0, "In bootloader\r\n");
 
     logmsg("Before main loop");
 

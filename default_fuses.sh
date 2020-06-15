@@ -32,3 +32,26 @@
 
 # lock bootloader
 ./edbg -t samd51 -F w0,29:26,0xd     # NVM Bootloader Size
+
+
+
+# Read fuses
+
+./edbg -t samd51 -F r0,35:32      # Number of NVM Blocks composing a SmartEEPROM sector
+# 1
+./edbg -t samd51 -F r0,38:36      # SmartEEPROM Page Size
+# 3
+./edbg -t samd51 -F r0,48         # WDT Enable at power-on.
+# 0
+./edbg -t samd51 -F r0,49         # WDT Always-On at power-on.
+# 0
+./edbg -t samd51 -F r0,53:50      # WDT Period at power-on.
+# 0xB
+./edbg -t samd51 -F r0,57:54      # WDT Window mode time-out at power-on
+# 0xB
+./edbg -t samd51 -F r0,61:58      # WDT Early Warning Interrupt Time Offset at power-on.
+# 0xB
+./edbg -t samd51 -F r0,62         # WDT Timer Window Mode Enable at power-on.
+# 0
+./edbg -t samd51 -F r0,95:64
+# 0xffffffff

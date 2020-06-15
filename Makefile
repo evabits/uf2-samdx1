@@ -80,6 +80,8 @@ SOURCES = $(COMMON_SRC) \
 	src/sam_ba_monitor.c \
 	src/uart_driver.c \
 	src/hid.c \
+	src/SEGGER_RTT_printf.c \
+	src/SEGGER_RTT.c \
 
 SELF_SOURCES = $(COMMON_SRC) \
 	src/selfmain.c
