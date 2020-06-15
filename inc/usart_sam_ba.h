@@ -34,7 +34,7 @@
 #include "stdint.h"
 
 /* USART buffer size (must be a power of two) */
-#define USART_BUFFER_SIZE 128
+#define USART_BUFFER_SIZE 256
 
 /* Define the default time-out value for USART. */
 #define USART_DEFAULT_TIMEOUT 1000
